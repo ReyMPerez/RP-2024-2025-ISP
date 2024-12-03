@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Write Review</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/layout.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src=""></script>
+
+<body>
+
+    <ul>
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#explore">Explore</a></li>
+        <li><a href="#reviews">Write Reviews</a></li>
+        <li style="float:right"><a href="#profile">Profile</a></li>
+    </ul>
+  
+    <h1>Write a Review</h1>
+        <form class="mid-section">
+            <div class="content">
+                <div>
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required><br><br>
+                </div>
+            </div>
+
+            <label for="review"></label>
+            <textarea style="width:100%;height:80px" id="review" name="review" placeholder="Add a review..." required></textarea><br><br>
+
+            <div class="content">
+                <div>
+                    <label for="tags">Tags:</label>
+                    <select id="tags" required>
+                        <option selected>Select</option>
+                        <option value="Tag 1">Tag 1</option>
+                        <option value="Tag 2">Tag 2</option>
+                        <option value="Tag 3">Tag 3</option>
+                        <option value="Tag 4">Tag 4</option>
+                        <option value="Tag 5">Tag 5</option>
+                    </select>
+
+                    <input type="checkbox" name="spoilers" value="containsSpoilers">
+                    <label for="spoilers">Contains spoilers?</label><br><br>
+                </div>
+            </div>
+
+            <div class="content">
+                <div>
+                    <span class="fa fa-star fa-3x checked"></span>
+                    <span class="fa fa-star fa-3x checked"></span>
+                    <span class="fa fa-star fa-3x checked"></span>
+                    <span class="fa fa-star fa-3x checked"></span>
+                    <span class="fa fa-star fa-3x checked"></span>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="content">
+                <button>Submit</button>
+            </div>
+        </form>
+
+</body>
+</html>

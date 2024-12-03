@@ -42,6 +42,10 @@ li a:hover:not(.active) {
   background-color: #0AA2BA;
 }
 
+h1 {
+  text-align: center;
+}
+
 .split-section {
   display: flex;
   height: calc(100vh - 60px); /* Places section underneath navigation bar */
@@ -63,6 +67,22 @@ li a:hover:not(.active) {
   background-color: #c1c1c1;
 }
 
+.mid-section {
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  height: calc(100vh - 60px);
+}
+
+textarea {
+  resize: vertical;
+  padding: 20px;
+}
+
+label, input, select, textarea, button {
+  font-family: georgia;
+}
+
 .content { /* Stacks child elements vertically */
     display: flex;
     flex-direction: column;
@@ -76,4 +96,8 @@ li a:hover:not(.active) {
   width: 200px;
   height: 200px;
   background-color: #0AA2BA;
+}
+
+.checked {
+  color: goldenrod;
 }
