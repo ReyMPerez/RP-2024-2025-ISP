@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
     background: linear-gradient(to right, #a9a9a9, #f0f0f0);
     background-size: 400% 400%;
@@ -48,23 +54,22 @@ h1 {
 
 .split-section {
   display: flex;
-  height: calc(100vh - 60px); /* Places section underneath navigation bar */
+  height: 100vh; /* Places section underneath navigation bar */
 }
 
 .half {
   display: flex;
   flex: 1;
-  padding: 20px;
   justify-content: center;
   align-items: center;
 }
 
 .left {
-  background-color: #e0e0e0;
+  background: linear-gradient(to right, #a9a9a9, #f0f0f0);
 }
 
 .right {
-  background-color: #c1c1c1;
+  background: linear-gradient(to right, #f0f0f0, #a9a9a9);
 }
 
 .mid-section {
