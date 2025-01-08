@@ -17,38 +17,69 @@
   
     <h1>Explore</h1>
 
-    <div class="btn-group">
-        <button class="button" style="margin-left:15px;">Films</button>
-        <button class="button">Books</button>
+    <div class="btn-container">
+        <div class="btn-group">
+            <button class="button active" id="filmsButton" onclick="showSection('films')">Films</button>
+            <button class="button inactive" id="booksButton" onclick="showSection('books')">Books</button>
+        </div>
+        <div class="btn-group">
+            <button class="button inactive">Filter</button>
+            <button class="button inactive">Sort</button>
+        </div>
     </div>
 
-    <h2 style="margin-left:15px;">Films</h2>
-    <div class="exploreList" id="filmList">
-        <div class="media" style="margin-left:15px;"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
+    <div id="filmSection" style="display:block;">
+        <h2 style="margin-left:15px;">Films</h2>
+        <div class="exploreList">
+            <div class="media" style="margin-left:15px;"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+        </div>
     </div>
 
-    <h2 style="margin-left:15px;">Books</h2>
-    <div class="exploreList" id="bookList">
-        <div class="media" style="margin-left:15px;"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
+    <div id="bookSection" style="display:none;">
+        <h2 style="margin-left:15px;">Books</h2>
+        <div class="exploreList">
+            <div class="media" style="margin-left:15px;"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+            <div class="media"></div>
+        </div>
     </div>
+
+    <script>
+        let films = document.getElementById("filmSection");
+        let filmsButton = document.getElementById("filmsButton");
+        let books = document.getElementById("bookSection");
+        let booksButton = document.getElementById("booksButton");
+
+        function showSection(name) {
+            if (name === 'books') {
+                booksButton.classList.replace("inactive", "active");
+                filmsButton.classList.replace("active", "inactive");
+                books.style.display = "block";
+                films.style.display = "none";
+            } else {
+                filmsButton.classList.replace("inactive", "active");
+                booksButton.classList.replace("active", "inactive");
+                films.style.display = "block";
+                books.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 </html>
