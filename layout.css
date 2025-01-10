@@ -19,7 +19,6 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: #333;
-  position: -webkit-sticky;
   position: sticky;
 }
 
@@ -129,18 +128,32 @@ label, input, select, textarea, button {
     text-align: center;
 }
 
-.icon, img {
+.icon{
   border-radius: 50%;
   width: 200px;
   height: 200px;
   background-color: #0AA2BA;
 }
 
-.media, img {
+.media {
   width: 140px;
   height: 200px;
   margin-bottom: 15px;
   background-color: #0AA2BA;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+
+.homeList {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
 .exploreList {
