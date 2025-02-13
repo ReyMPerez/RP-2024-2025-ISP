@@ -81,12 +81,10 @@ p {
   align-items: center;
 }
 
-.left {
-  background: linear-gradient(to right, #a9a9a9, #f0f0f0);
-}
-
 .right {
-  background: linear-gradient(to right, #f0f0f0, #a9a9a9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .mid-section {
