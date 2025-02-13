@@ -47,11 +47,11 @@
 
             <div class="content">
                 <div>
-                    <span class="fa fa-star fa-3x checked"></span>
-                    <span class="fa fa-star fa-3x checked"></span>
-                    <span class="fa fa-star fa-3x checked"></span>
-                    <span class="fa fa-star fa-3x checked"></span>
-                    <span class="fa fa-star fa-3x checked"></span>
+                    <span class="fa fa-star fa-3x checked" style="cursor:pointer;" id="star1" onclick="showRating('first')"></span>
+                    <span class="fa fa-star fa-3x checked" style="cursor:pointer;" id="star2" onclick="showRating('second')"></span>
+                    <span class="fa fa-star fa-3x checked" style="cursor:pointer;" id="star3" onclick="showRating('third')"></span>
+                    <span class="fa fa-star fa-3x checked" style="cursor:pointer;" id="star4" onclick="showRating('fourth')"></span>
+                    <span class="fa fa-star fa-3x checked" style="cursor:pointer;" id="star5" onclick="showRating('fifth')"></span>
                 </div>
             </div>
 
@@ -61,6 +61,48 @@
                 <button>Submit</button>
             </div>
         </form>
+
+    <script>
+        let firstStar = document.getElementById("star1");
+        let secondStar = document.getElementById("star2");
+        let thirdStar = document.getElementById("star3");
+        let fourthStar = document.getElementById("star4");
+        let fifthStar = document.getElementById("star5");
+    
+        function showRating(name) {
+            if (name === 'first') {
+                firstStar.classList.replace("unchecked", "checked");
+                secondStar.classList.replace("checked", "unchecked");
+                thirdStar.classList.replace("checked", "unchecked");
+                fourthStar.classList.replace("checked", "unchecked");
+                fifthStar.classList.replace("checked", "unchecked");
+            } else if (name === 'second') {
+                firstStar.classList.replace("unchecked", "checked");
+                secondStar.classList.replace("unchecked", "checked");
+                thirdStar.classList.replace("checked", "unchecked");
+                fourthStar.classList.replace("checked", "unchecked");
+                fifthStar.classList.replace("checked", "unchecked");
+            } else if (name === 'third') {
+                firstStar.classList.replace("unchecked", "checked");
+                secondStar.classList.replace("unchecked", "checked");
+                thirdStar.classList.replace("unchecked", "checked");
+                fourthStar.classList.replace("checked", "unchecked");
+                fifthStar.classList.replace("checked", "unchecked");
+            } else if (name === 'fourth') {
+                firstStar.classList.replace("unchecked", "checked");
+                secondStar.classList.replace("unchecked", "checked");
+                thirdStar.classList.replace("unchecked", "checked");
+                fourthStar.classList.replace("unchecked", "checked");
+                fifthStar.classList.replace("checked", "unchecked");
+            } else {
+                firstStar.classList.replace("unchecked", "checked");
+                secondStar.classList.replace("unchecked", "checked");
+                thirdStar.classList.replace("unchecked", "checked");
+                fourthStar.classList.replace("unchecked", "checked");
+                fifthStar.classList.replace("unchecked", "checked");
+            }
+        }
+    </script>
 
 </body>
 </html>
