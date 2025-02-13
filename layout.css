@@ -20,6 +20,8 @@ ul {
   overflow: hidden;
   background-color: #333;
   position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 li {
