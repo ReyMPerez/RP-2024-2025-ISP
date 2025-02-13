@@ -44,7 +44,7 @@ li a:hover:not(.active) {
 }
 
 .active {
-  background-color: #0AA2BA;
+  background-color: #800020;
 }
 
 .inactive {
@@ -130,14 +130,14 @@ label, input, select, textarea, button {
   border-radius: 50%;
   width: 200px;
   height: 200px;
-  background-color: #0AA2BA;
+  background-color: #800020;
 }
 
 .media {
   width: 140px;
   height: 200px;
   margin-bottom: 20px;
-  background-color: #0AA2BA;
+  background-color: #800020;
   text-align: center;
 }
 
