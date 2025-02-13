@@ -138,8 +138,9 @@ label, input, select, textarea, button {
 .media {
   width: 140px;
   height: 200px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   background-color: #0AA2BA;
+  text-align: center;
 }
 
 .row {
@@ -152,8 +153,9 @@ label, input, select, textarea, button {
 
 .homeList {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   gap: 15px;
+  width: 100vw;
 }
 
 .exploreList {
