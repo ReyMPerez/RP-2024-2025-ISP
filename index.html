@@ -30,26 +30,65 @@
     <hr>
 
     <h2>For You</h2>
-    <div class="homeList">
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
+    <div class="carousel-container">
+        <button class="carousel-arrow left">&#9664;</button>
+        <div class="homeList">
+          <div class="media">1</div>
+          <div class="media">2</div>
+          <div class="media">3</div>
+          <div class="media">4</div>
+          <div class="media">5</div>
+          <div class="media">6</div>
+          <div class="media">7</div>
+        </div>
+        <button class="carousel-arrow right">&#9654;</button>
     </div>
 
     <h2>Staff Picks</h2>
-    <div class="homeList">
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
-        <div class="media"></div>
+    <div class="carousel-container">
+        <button class="carousel-arrow left">&#9664;</button>
+        <div class="homeList">
+            <div class="media">A</div>
+            <div class="media">B</div>
+            <div class="media">C</div>
+            <div class="media">D</div>
+            <div class="media">E</div>
+            <div class="media">F</div>
+            <div class="media">G</div>
+        </div>
+        <button class="carousel-arrow right">&#9654;</button>
     </div>
+
+    <script>
+        function moveCarousel(carousel, direction) {
+            const homeList = carousel.querySelector('.homeList');
+            const items = Array.from(homeList.children); // Convert NodeList to Array for easy manipulation
+
+            if (direction === 'right') {
+                const firstItem = items[0];
+                homeList.appendChild(firstItem);
+            } else if (direction === 'left') {
+                const lastItem = items[items.length - 1];
+                homeList.insertBefore(lastItem, items[0]);
+            }
+        }
+
+        function setupCarousel(carousel) {
+            const leftArrow = carousel.querySelector('.carousel-arrow.left');
+            const rightArrow = carousel.querySelector('.carousel-arrow.right');
+  
+            rightArrow.addEventListener('click', () => {
+                moveCarousel(carousel, 'right');
+            });
+
+            leftArrow.addEventListener('click', () => {
+                moveCarousel(carousel, 'left');
+            });
+        }
+
+        const carousels = document.querySelectorAll('.carousel-container');
+        carousels.forEach(setupCarousel);
+    </script>
 
 </body>
 </html>
