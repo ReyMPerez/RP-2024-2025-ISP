@@ -147,6 +147,40 @@ label, input, select, textarea, button {
     text-align: center;
 }
 
+#movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.movie {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+.movie:hover {
+  transform: translateY(-5px);
+}
+.movie img {
+  width: 100%;
+  display: block;
+}
+.movie-title {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
 .icon{
   border-radius: 50%;
   width: 200px;
