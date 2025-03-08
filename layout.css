@@ -199,6 +199,7 @@ label, input, select, textarea, button {
   position: relative;
   overflow: hidden;
   border-radius: 8px;
+  background-color: #800020;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   transition: transform 0.3s ease;
 }
