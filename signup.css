@@ -64,7 +64,7 @@ h1, h5, label {
     text-align: center;
 }
 
-label, input, button {
+label, select, option, input, button {
     font-family: georgia;
 }
 
@@ -72,5 +72,5 @@ label, input, button {
   border-radius: 50%;
   width: 200px;
   height: 200px;
-  background-color: #0AA2BA;
+  background-color: #800020;
 }
