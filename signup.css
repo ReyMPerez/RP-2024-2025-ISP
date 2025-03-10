@@ -68,9 +68,8 @@ label, select, option, input, button {
     font-family: georgia;
 }
 
-.icon, img {
+.logo-image, img {
   border-radius: 50%;
   width: 200px;
   height: 200px;
-  background-color: #800020;
 }
