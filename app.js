@@ -2,6 +2,8 @@
 const apiKey = '1e294b7212ca318a2fc2acabc0303a23';
 const movieList = document.getElementById('movie-list');
 
+const movieFallback = 'https://cdn1.polaris.com/globalassets/pga/accessories/my20-orv-images/no_image_available6.jpg?v=71397d75&format=webp&height=800';
+
 async function fetchMovies(pageNumber) {
     const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${pageNumber}`;
     const response = await fetch(apiUrl);
@@ -22,7 +24,9 @@ function displayMovies(movies) {
         movieDiv.classList.add('movie');
 
         const poster = document.createElement('img');
-        poster.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+        poster.src = movie.poster_path 
+            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` 
+            : movieFallback; // If no image available
         poster.alt = movie.title;
 
         const title = document.createElement('div');
@@ -39,6 +43,8 @@ loadAllMovies(); // Load 3 pages when the site loads
 
 // Connects the website to book database
 const bookList = document.getElementById('book-list');
+
+const bookFallback = 'https://cdn1.polaris.com/globalassets/pga/accessories/my20-orv-images/no_image_available6.jpg?v=71397d75&format=webp&height=800';
 
 async function fetchBooks(page) {
     const startIndex = (page - 1) * 20;
@@ -60,11 +66,10 @@ function displayBooks(books) {
         bookDiv.classList.add('book');
 
         const coverImg = document.createElement('img');
-        if (book.cover_i) {
-            coverImg.src = `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
-        } else {
-            coverImg.src = 'https://via.placeholder.com/150x200?text=No+Cover';
-        }
+        coverImg.src = book.cover_i 
+            ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` 
+            : bookFallback; // If no image available
+        coverImg.alt = book.title;
 
         const title = document.createElement('div');
         title.classList.add('book-title');
