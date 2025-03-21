@@ -4,6 +4,7 @@
 <title>Explore</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="/layout.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src=""></script>
 
 <body>
@@ -17,14 +18,16 @@
   
     <h1>Explore</h1>
 
-    <div class="btn-container">
+    <div class="btn-container center-explore">
         <div class="btn-group">
             <button class="button active" id="filmsButton" onclick="showSection('films')">Films</button>
             <button class="button inactive" id="booksButton" onclick="showSection('books')" style="border-left:1px solid #bbb;">Books</button>
         </div>
         <div class="btn-group">
-            <button class="button inactive">Filter</button>
-            <button class="button inactive" style="border-left:1px solid #bbb;">Sort</button>
+            <div class="search-container">
+                  <input type="text" placeholder="Search..." name="search">
+                  <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
         </div>
     </div>
 

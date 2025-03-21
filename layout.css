@@ -125,6 +125,13 @@ label, input, select, textarea, button {
   font-family: georgia;
 }
 
+.center-explore {
+  margin: auto;
+  width: 35%;
+  padding: 10px;
+  /* border: 3px solid #73AD21; */
+}
+
 .btn-container {
   display: flex;
 }
@@ -135,12 +142,42 @@ label, input, select, textarea, button {
   display: flex;
   margin: 0;
   padding: 15px 32px;
+  font-size: 18px;
   text-align: center;
   text-decoration: none;
+}
+
+.button {
   cursor: pointer;
 }
 
-.content { /* Stacks child elements vertically */
+.search-container {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.search-container input[type="text"] {
+  flex: 1;
+  padding: 15px;
+  font-size: 20px;
+  border: none;
+}
+
+.search-container button {
+  padding: 15px 20px;
+  font-size: 20px;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background: #ccc;
+}
+
+/* Stacks child elements vertically */
+.content {
     display: flex;
     flex-direction: column;
     justify-content: center;
