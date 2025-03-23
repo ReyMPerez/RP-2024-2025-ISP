@@ -11,6 +11,7 @@ html, body {
 body {
     background: linear-gradient(to right, #a9a9a9, #f0f0f0);
     background-size: 400% 400%;
+    font-family: 'Playfair Display', serif;
 }
 
 ul {
@@ -122,7 +123,7 @@ textarea {
 }
 
 label, input, select, textarea, button {
-  font-family: georgia;
+  font-family: 'Playfair Display', serif;
 }
 
 .center-explore {
