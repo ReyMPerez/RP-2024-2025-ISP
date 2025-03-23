@@ -177,6 +177,17 @@ label, input, select, textarea, button {
   background: #ccc;
 }
 
+.button-review {
+  border: 1px solid white;
+  background-color: #333;
+  color: white;
+  padding: 12px 28px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 /* Stacks child elements vertically */
 .content {
     display: flex;

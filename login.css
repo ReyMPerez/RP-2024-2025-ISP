@@ -46,6 +46,10 @@ h1, h5, label {
     font-family: 'Playfair Display', serif;
 }
 
+h1 {
+  font-size: 42px;
+}
+
 .split-section {
   display: flex;
   height: 100vh;
@@ -68,6 +72,17 @@ h1, h5, label {
 
 label, input, button {
     font-family: 'Playfair Display', serif;
+}
+
+.button {
+  border: 1px solid white;
+  background-color: #333;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .logo-image, img {
