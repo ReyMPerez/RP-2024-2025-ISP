@@ -21,6 +21,9 @@
         <form class="mid-section">
             <div class="content">
                 <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" style="margin-right:15px" required>
+
                     <label for="date">Date:</label>
                     <input type="date" id="date" name="date" required><br><br>
                 </div>
@@ -31,15 +34,8 @@
 
             <div class="content">
                 <div>
-                    <label for="tags">Tags:</label>
-                    <select id="tags" required>
-                        <option selected>Select</option>
-                        <option value="Tag 1">Tag 1</option>
-                        <option value="Tag 2">Tag 2</option>
-                        <option value="Tag 3">Tag 3</option>
-                        <option value="Tag 4">Tag 4</option>
-                        <option value="Tag 5">Tag 5</option>
-                    </select>
+                    <label for="tag">Tag:</label>
+                    <input type="text" id="tag" name="tag" style="margin-right:12px;width:75px;">
 
                     <input type="checkbox" name="spoilers" value="containsSpoilers">
                     <label for="spoilers">Contains spoilers?</label><br><br>
