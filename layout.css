@@ -179,6 +179,42 @@ label, input, select, textarea, button {
   background: #ccc;
 }
 
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-results .movie {
+  text-align: center;
+  cursor: pointer;
+}
+
+.search-results .book {
+  text-align: center;
+  cursor: pointer;
+}
+
+.search-results img {
+  object-fit: cover;
+  display: block;
+}
+
+.search-results .title {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
 .button-review {
   border: 1px solid white;
   background-color: #333;

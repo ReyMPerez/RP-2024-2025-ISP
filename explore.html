@@ -24,19 +24,32 @@
             <button class="button active" id="filmsButton" onclick="showSection('films')">Films</button>
             <button class="button inactive" id="booksButton" onclick="showSection('books')" style="border-left:1px solid #bbb;">Books</button>
         </div>
-        <div class="btn-group">
+
+        <div class="btn-group" id="filmsSearch" style="display:block;">
             <div class="search-container">
-                  <input type="text" placeholder="Search..." name="search">
-                  <button type="submit"><i class="fa fa-search"></i></button>
+                <input type="text" id="search-movie-input" placeholder="Search..." name="search">
+                <button type="button" id="search-movie-button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="btn-group" id="booksSearch" style="display:none;">
+            <div class="search-container">
+                <input type="text" id="search-book-input" placeholder="Search..." name="search">
+                <button type="button" id="search-book-button">
+                    <i class="fa fa-search"></i>
+                </button>
             </div>
         </div>
     </div>
 
     <div id="filmSection" style="display:block;">
+        <div id="movie-results" class="search-results"></div>
         <div id="movie-list"></div>
     </div>
 
     <div id="bookSection" style="display:none;">
+        <div id="book-results" class="search-results"></div>
         <div id="book-list"></div>
     </div>
 
@@ -45,8 +58,10 @@
     <script>
         let films = document.getElementById("filmSection");
         let filmsButton = document.getElementById("filmsButton");
+        let filmsSearch = document.getElementById("filmsSearch");
         let books = document.getElementById("bookSection");
         let booksButton = document.getElementById("booksButton");
+        let booksSearch = document.getElementById("booksSearch");
 
         function showSection(name) {
             if (name === 'books') {
@@ -54,11 +69,15 @@
                 filmsButton.classList.replace("active", "inactive");
                 books.style.display = "block";
                 films.style.display = "none";
+                booksSearch.style.display = "block";
+                filmsSearch.style.display = "none";
             } else {
                 filmsButton.classList.replace("inactive", "active");
                 booksButton.classList.replace("active", "inactive");
                 films.style.display = "block";
                 books.style.display = "none";
+                filmsSearch.style.display = "block";
+                booksSearch.style.display = "none";
             }
         }
     </script>
