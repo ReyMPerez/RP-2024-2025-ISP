@@ -1,109 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
-<title>Home - Review Media Platform</title>
+<title>Review Media Platform - Login</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="/layout.css">
+<link rel="stylesheet" href="/login.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap">
 <script src=""></script>
 
 <body>
-
-    <ul>
-        <li><a class="active" href="javascript:void(0)">Home</a></li>
-        <li><a href="/explore.html">Explore</a></li>
-        <li><a href="/reviews.html">Write Review</a></li>
-        <li style="float:right"><a href="/profile.html">Profile</a></li>
-    </ul>
-  
-    <div class="row" style="background:no-repeat top center fixed;">
-        <a href="https://unsplash.com/es/s/fotos/book" target="_blank"><img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D" class="column" style="width:49vw;height:auto;filter:brightness(55%);"></a>
-        <a href="https://www.wallpaperflare.com/search?wallpaper=cinematography" target="_blank"><img src="https://c0.wallpaperflare.com/preview/57/497/73/movie-reel-projector-film.jpg" class="column" style="width:49vw;height:auto;filter:brightness(55%);"></a>
-    </div>
-
-    <h1>Review Media Platform</h1>
-
-    <p>Review Media Platform (RMP) is a versatile platform for users to share reviews and discover new movies and books. Whether you are an avid book reader or a cinema connoisseur, our features include personalized recommendations, thorough review tracking, and a wide selection of books and movies. Explore new content, share your thoughts, and join our Review Website community.</p>
-    <p>DISCOVER new books and movies</p>
-    <p>SHARE your thoughts by writing reviews</p>
-    <p>ENJOY great stories</p>
-
-    <hr>
-
-    <h2>For You</h2>
-    <div class="carousel-container">
-        <button class="carousel-arrow left">&#9664;</button>
-        <div class="homeList">
-          <div class="media">5</div>
-          <div class="media">6</div>
-          <div class="media">7</div>
-          <div class="media">1</div>
-          <div class="media">2</div>
-          <div class="media">3</div>
-          <div class="media">4</div>
-        </div>
-        <button class="carousel-arrow right">&#9654;</button>
-    </div>
-
-    <h2>Staff Picks</h2>
-    <div class="carousel-container">
-        <button class="carousel-arrow left">&#9664;</button>
-        <div class="homeList">
-            <div class="media">
-                <img src="https://covers.openlibrary.org/b/id/8257948-M.jpg" alt="Romeo and Juliet">
+        <section class="split-section">
+            <div class="half left">
+                <div class="content">
+                    <h1>Review Media Platform</h1>
+                    <img src="websiteLogo.png" alt="Review Website Logo" class="logo-image">
+                </div>
             </div>
-            <div class="media">
-                <img src="https://covers.openlibrary.org/b/id/14653269-M.jpg" alt="Hamlet">
-            </div>
-            <div class="media">
-                <img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/nrmXQ0zcZUL8jFLrakWc90IR8z9.jpg" alt="Shutter Island">
-            </div>
-            <div class="media">
-                <img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg" alt="La La Land">
-            </div>
-            <div class="media">
-                <img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/iR1bVfURbN7r1C46WHFbwCkVve.jpg" alt="About Time">
-            </div>
-            <div class="media">
-                <img src="https://covers.openlibrary.org/b/id/13900709-M.jpg" alt="Jane Eyre">
-            </div>
-            <div class="media">
-                <img src="https://covers.openlibrary.org/b/id/12752033-M.jpg" alt="The Picture of Dorian Gray">
-            </div>
-        </div>
-        <button class="carousel-arrow right">&#9654;</button>
-    </div>
+            <div class="half right">
+                <div class="content">
+                    <form style="display:table;margin:0 auto;height:100vh;">
+                        <div style="display:table-cell;vertical-align:middle;">
+                            <div class="container" style="display: flex; flex-direction: column; gap: 10px; width: 300px;">
+                                <label for="email"><b>Email</b></label>
+                                <input type="text" style="display: block; width: 100%;" placeholder="Enter Email" name="email" required>
+            
+                                <label for="psw"><b>Password</b></label>
+                                <input type="password" style="display: block; width: 100%;" placeholder="Enter Password" name="psw" required>
+            
+                                <button class="button" type="submit" style="margin-top:20px;width:100%;">Login</button>
 
-    <script>
-        function moveCarousel(carousel, direction) {
-            const homeList = carousel.querySelector('.homeList');
-            const items = Array.from(homeList.children); // Convert NodeList to Array for easy manipulation
-
-            if (direction === 'right') {
-                const firstItem = items[0];
-                homeList.appendChild(firstItem);
-            } else if (direction === 'left') {
-                const lastItem = items[items.length - 1];
-                homeList.insertBefore(lastItem, items[0]);
-            }
-        }
-
-        function setupCarousel(carousel) {
-            const leftArrow = carousel.querySelector('.carousel-arrow.left');
-            const rightArrow = carousel.querySelector('.carousel-arrow.right');
-  
-            rightArrow.addEventListener('click', () => {
-                moveCarousel(carousel, 'right');
-            });
-
-            leftArrow.addEventListener('click', () => {
-                moveCarousel(carousel, 'left');
-            });
-        }
-
-        const carousels = document.querySelectorAll('.carousel-container');
-        carousels.forEach(setupCarousel);
-    </script>
+                                <h5 style="text-align:center;">New user? <a href="/signup.html" style="color:#f8f8f8;">Sign Up</a></h5>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
 
 </body>
 </html>
