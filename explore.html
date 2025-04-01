@@ -53,6 +53,18 @@
         <div id="book-list"></div>
     </div>
 
+    <div id="media-modal" class="modal">
+        <span class="close" style="color:black;" onclick="document.getElementById('media-modal').style.display='none'">&times;</span>
+        <div class="modal-content">
+            <img id="modal-image" src="" alt="Media Image">
+            <div class="modal-text">
+                <h1 id="modal-title"></h1>
+                <p id="modal-description"></p>
+                <a id="review-button" href="/reviews.html" target="_self" class="review-btn">Write a Review</a>
+            </div>
+        </div>
+    </div>
+
     <script src="app.js"></script>
 
     <script>

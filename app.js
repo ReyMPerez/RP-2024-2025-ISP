@@ -52,6 +52,8 @@ function displayMovies(movies) {
         movieDiv.appendChild(poster);
         movieDiv.appendChild(title);
         movieList.appendChild(movieDiv);
+
+        movieDiv.addEventListener('click', () => openMediaModal(movie));
     });
 }
 
@@ -64,9 +66,23 @@ const seenBooks = new Set();
 const bookFallback = 'https://cdn1.polaris.com/globalassets/pga/accessories/my20-orv-images/no_image_available6.jpg?v=71397d75&format=webp&height=800';
 
 async function fetchBooks(page) {
-    const response = await fetch(`https://openlibrary.org/search.json?q=bestseller&limit=20&page=${page}`);
-    const data = await response.json();
-    return data.docs || [];
+    const url = `https://openlibrary.org/search.json?q=bestseller&limit=20&page=${page}`;
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch books: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        const books = data.docs || [];
+
+        return books;
+    } catch (error) {
+        console.error("Error fetching books:", error);
+        return [];
+    }
 }
 
 async function loadBooks() {
@@ -109,6 +125,8 @@ function displayBook(book) {
     bookDiv.appendChild(coverImg);
     bookDiv.appendChild(title);
     bookList.appendChild(bookDiv);
+
+    bookDiv.addEventListener('click', () => openMediaModal(book, true));
 }
 
 loadBooks(); // Load the first 60 books when page loads
@@ -179,14 +197,14 @@ async function searchMovies(query) {
 }
 
 async function searchBooks(query) {
-    bookResultsContainer.innerHTML = ""; // Clear previous results
+    bookResultsContainer.innerHTML = "";
 
     try {
         const bookResponse = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=15`);
         const bookData = await bookResponse.json();
         const books = bookData.docs || [];
 
-        books.forEach(book => { // Display books
+        books.forEach(book => {
             const bookDiv = document.createElement("div");
             bookDiv.classList.add("book");
 
@@ -217,26 +235,8 @@ async function fetchMovies(query) { // Fetch movies from TMDb
     return data.results || [];
 }
 
-async function fetchBooks(query) { // Fetch books from Open Library
-    const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=10`;
-
-    try {
-        const response = await fetch(url);
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        return data.docs || [];
-    } catch (error) {
-        console.error("Error fetching book data:", error);
-        return []; // Return an empty array if there's an error
-    }
-}
-
-function displayMovieResults(movies) { // Display search results
-    searchResults.innerHTML = ""; // Clear previous results
+function displayMovieResults(movies) {
+    searchResults.innerHTML = "";
 
     if (movies.length === 0) {
         searchResults.innerHTML = "<p>No results found.</p>";
@@ -246,7 +246,7 @@ function displayMovieResults(movies) { // Display search results
     const container = document.createElement('div');
     container.classList.add('search-container-results');
 
-    movies.forEach(movie => { // Add movies
+    movies.forEach(movie => {
         container.appendChild(createMediaItem(
             movie.title,
             movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : movieFallback
@@ -256,8 +256,8 @@ function displayMovieResults(movies) { // Display search results
     searchResults.appendChild(container);
 }
 
-function displayBookResults(books) { // Display search results
-    searchResults.innerHTML = ""; // Clear previous results
+function displayBookResults(books) {
+    searchResults.innerHTML = "";
 
     if (books.length === 0) {
         searchResults.innerHTML = "<p>No results found.</p>";
@@ -277,7 +277,7 @@ function displayBookResults(books) { // Display search results
     searchResults.appendChild(container);
 }
 
-function createMediaItem(title, imgSrc) { // Helper function to create a media item
+function createMediaItem(title, imgSrc) {
     const mediaDiv = document.createElement('div');
     mediaDiv.classList.add('media-item');
 
@@ -293,3 +293,91 @@ function createMediaItem(title, imgSrc) { // Helper function to create a media i
     mediaDiv.appendChild(titleDiv);
     return mediaDiv;
 }
+
+// Modal to show details
+const modal = document.createElement("div");
+modal.id = "detail-modal";
+modal.innerHTML = `
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modal-img" src="" alt="">
+        <h2 id="modal-title"></h2>
+        <p id="modal-description"></p>
+    </div>
+`;
+document.body.appendChild(modal);
+modal.querySelector(".close").addEventListener("click", () => modal.style.display = "none");
+
+async function showMovieDetails(movie) {
+    const modalContent = document.querySelector('.modal-content');
+    const title = document.querySelector('.modal-title');
+    const description = document.querySelector('.modal-description');
+
+    title.textContent = movie.title;
+    description.textContent = movie.overview || "No description available.";
+
+    const modalImage = document.querySelector('.modal-image');
+    modalImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
+    const reviewButton = document.querySelector('.review-button');
+    reviewButton.onclick = () => window.open(`https://www.themoviedb.org/movie/${movie.id}/reviews`, '_blank');
+
+    modal.style.display = 'flex';
+}
+
+async function showBookDetails(book) {
+    const modalContent = document.querySelector('.modal-content');
+    const title = document.querySelector('.modal-title');
+    const description = document.querySelector('.modal-description');
+    
+    title.textContent = book.title;
+    
+    description.textContent = book.author_name.join(", ");
+
+    const modalImage = document.querySelector('.modal-image');
+    modalImage.src = book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : bookFallback;
+
+    const reviewButton = document.querySelector('.review-button');
+    reviewButton.onclick = () => window.open(`https://openlibrary.org${book.key}/reviews`, '_blank');
+
+    modal.style.display = 'flex';
+}
+
+function openMediaModal(media, isBook = false) {
+    const modal = document.getElementById('media-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalImage = document.getElementById('modal-image');
+    const modalDescription = document.getElementById('modal-description');
+    const reviewButton = document.getElementById('review-button');
+
+    modalTitle.textContent = media.title;
+    modalImage.src = isBook
+        ? (media.cover_i ? `https://covers.openlibrary.org/b/id/${media.cover_i}-L.jpg` : bookFallback)
+        : (media.poster_path ? `https://image.tmdb.org/t/p/w500${media.poster_path}` : movieFallback);
+    
+    let descriptionText = "No description available.";
+    if (isBook) {
+        if (media.description) {
+            descriptionText = typeof media.description === 'object' ? media.description.value : media.description;
+        } else if (media.author_name) {
+            descriptionText = `Author(s): ${media.author_name.join(", ")}`;
+        }
+    } else {
+        descriptionText = media.overview || descriptionText;
+    }
+    
+    modalDescription.textContent = descriptionText;
+
+    reviewButton.href = `review.html?id=${media.id}&type=${isBook ? 'book' : 'movie'}`;
+
+    modal.style.display = 'block';
+}
+
+// Close the modal when the user clicks outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById('media-modal');
+
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+};
