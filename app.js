@@ -368,7 +368,7 @@ function openMediaModal(media, isBook = false) {
     
     modalDescription.textContent = descriptionText;
 
-    reviewButton.href = `review.html?id=${media.id}&type=${isBook ? 'book' : 'movie'}`;
+    reviewButton.href = `reviews.html?id=${media.id}&type=${isBook ? 'book' : 'movie'}`;
 
     modal.style.display = 'block';
 }
