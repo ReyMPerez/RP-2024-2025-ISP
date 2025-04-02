@@ -9,6 +9,28 @@
 <script src=""></script>
 
 <body>
+    <style>
+        #autocomplete-results {
+            display: none;
+            border: 1px solid #ccc;
+            background-color: white;
+            max-height: 300px;
+            overflow-y: auto;
+            position: absolute;
+            width: 320px;
+            margin-top: 25px;
+        }
+
+        #autocomplete-results div {
+            padding: 10px;
+            cursor: pointer;
+            color: black;
+        }
+
+        #autocomplete-results div:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 
     <ul>
         <li><a href="/home.html">Home</a></li>
@@ -16,90 +38,143 @@
         <li><a class="active" href="javascript:void(0)">Write Review</a></li>
         <li style="float:right"><a href="/profile.html">Profile</a></li>
     </ul>
-  
+
     <h1>Write a Review</h1>
-        <form class="mid-section">
-            <div class="content">
-                <div>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" style="margin-right:15px" required>
+    <form class="mid-section">
+        <div class="content">
+            <div>
+                <label for="media-name">Title:</label>
+                <input type="text" id="media-name" name="media-name" placeholder="Search..." required>
+                <ul id="autocomplete-results"></ul>
 
-                    <label for="date">Date:</label>
-                    <input type="date" id="date" name="date" required><br><br>
-                </div>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required><br><br>
             </div>
+        </div>
 
-            <label for="review"></label>
-            <textarea style="width:100%;height:80px" id="review" name="review" placeholder="Add a review..." required></textarea><br><br>
+        <label for="review"></label>
+        <textarea style="width:100%;height:80px" id="review" name="review" placeholder="Add a review..." required></textarea><br><br>
 
-            <div class="content">
-                <div>
-                    <label for="tag">Tag:</label>
-                    <input type="text" id="tag" name="tag" style="margin-right:12px;width:75px;">
-
-                    <input type="checkbox" name="spoilers" value="containsSpoilers">
-                    <label for="spoilers">Contains spoilers?</label><br><br>
-                </div>
+        <div class="content">
+            <div>
+                <input type="checkbox" name="spoilers" id="spoilers">
+                <label for="spoilers">Contains spoilers?</label><br><br>
             </div>
+        </div>
 
-            <div class="content">
-                <div>
-                    <span class="fa fa-star fa-3x checked" style="cursor:pointer;" id="star1" onclick="showRating('first')"></span>
-                    <span class="fa fa-star fa-3x checked" style="cursor:pointer;" id="star2" onclick="showRating('second')"></span>
-                    <span class="fa fa-star fa-3x checked" style="cursor:pointer;" id="star3" onclick="showRating('third')"></span>
-                    <span class="fa fa-star fa-3x checked" style="cursor:pointer;" id="star4" onclick="showRating('fourth')"></span>
-                    <span class="fa fa-star fa-3x checked" style="cursor:pointer;" id="star5" onclick="showRating('fifth')"></span>
-                </div>
+        <div class="content">
+            <div>
+                <span class="fa fa-star fa-3x unchecked" style="cursor:pointer;" id="star1" onclick="setRating(1)"></span>
+                <span class="fa fa-star fa-3x unchecked" style="cursor:pointer;" id="star2" onclick="setRating(2)"></span>
+                <span class="fa fa-star fa-3x unchecked" style="cursor:pointer;" id="star3" onclick="setRating(3)"></span>
+                <span class="fa fa-star fa-3x unchecked" style="cursor:pointer;" id="star4" onclick="setRating(4)"></span>
+                <span class="fa fa-star fa-3x unchecked" style="cursor:pointer;" id="star5" onclick="setRating(5)"></span>
             </div>
+        </div>
 
-            <br>
+        <br>
 
-            <div class="content">
-                <button class="button-review">Submit</button>
-            </div>
-        </form>
+        <div class="content">
+            <button class="button-review">Submit</button>
+        </div>
+    </form>
 
     <script>
-        let firstStar = document.getElementById("star1");
-        let secondStar = document.getElementById("star2");
-        let thirdStar = document.getElementById("star3");
-        let fourthStar = document.getElementById("star4");
-        let fifthStar = document.getElementById("star5");
-    
-        function showRating(name) {
-            if (name === 'first') {
-                firstStar.classList.replace("unchecked", "checked");
-                secondStar.classList.replace("checked", "unchecked");
-                thirdStar.classList.replace("checked", "unchecked");
-                fourthStar.classList.replace("checked", "unchecked");
-                fifthStar.classList.replace("checked", "unchecked");
-            } else if (name === 'second') {
-                firstStar.classList.replace("unchecked", "checked");
-                secondStar.classList.replace("unchecked", "checked");
-                thirdStar.classList.replace("checked", "unchecked");
-                fourthStar.classList.replace("checked", "unchecked");
-                fifthStar.classList.replace("checked", "unchecked");
-            } else if (name === 'third') {
-                firstStar.classList.replace("unchecked", "checked");
-                secondStar.classList.replace("unchecked", "checked");
-                thirdStar.classList.replace("unchecked", "checked");
-                fourthStar.classList.replace("checked", "unchecked");
-                fifthStar.classList.replace("checked", "unchecked");
-            } else if (name === 'fourth') {
-                firstStar.classList.replace("unchecked", "checked");
-                secondStar.classList.replace("unchecked", "checked");
-                thirdStar.classList.replace("unchecked", "checked");
-                fourthStar.classList.replace("unchecked", "checked");
-                fifthStar.classList.replace("checked", "unchecked");
-            } else {
-                firstStar.classList.replace("unchecked", "checked");
-                secondStar.classList.replace("unchecked", "checked");
-                thirdStar.classList.replace("unchecked", "checked");
-                fourthStar.classList.replace("unchecked", "checked");
-                fifthStar.classList.replace("unchecked", "checked");
+        let selectedRating = 0;
+
+        function setRating(rating) {
+            selectedRating = rating;
+            for (let i = 1; i <= 5; i++) {
+                let star = document.getElementById(`star${i}`);
+                if (i <= rating) {
+                    star.classList.replace("unchecked", "checked");
+                } else {
+                    star.classList.replace("checked", "unchecked");
+                }
             }
+        }
+
+        const TMDB_API_KEY = "1e294b7212ca318a2fc2acabc0303a23";
+        const OPEN_LIBRARY_API_URL = "https://openlibrary.org/search.json";
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchInput = document.getElementById("media-name");
+            const resultsContainer = document.getElementById("autocomplete-results");
+
+            searchInput.addEventListener("input", function () {
+                const query = searchInput.value.trim();
+                console.log("User input:", query);
+
+                if (query.length < 3) {
+                    resultsContainer.style.display = "none";
+                    return;
+                }
+
+                resultsContainer.style.display = "none";
+
+                // Fetch from both TMDb and Open Library
+                fetchTMDbResults(query, resultsContainer);
+                fetchOpenLibraryResults(query, resultsContainer);
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!searchInput.contains(event.target) && !resultsContainer.contains(event.target)) {
+                    resultsContainer.style.display = "none";
+                }
+            });
+        });
+
+        function fetchTMDbResults(query, resultsContainer) {
+            fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${query}&page=1`)
+                .then(response => response.json())
+                .then(data => {
+                    const movies = data.results;
+
+                    if (movies.length > 0) {
+                        resultsContainer.style.display = "block";
+                        movies.forEach(movie => {
+                            const resultItem = document.createElement("div");
+                            resultItem.textContent = movie.title;
+
+                            resultItem.addEventListener("click", function () {
+                                document.getElementById("media-name").value = movie.title;
+                                resultsContainer.style.display = "none";
+                            });
+
+                            resultsContainer.appendChild(resultItem);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching TMDb data:", error);
+                });
+        }
+
+        function fetchOpenLibraryResults(query, resultsContainer) {
+            fetch(`${OPEN_LIBRARY_API_URL}?q=${query}&limit=5`)
+                .then(response => response.json())
+                .then(data => {
+                    const books = data.docs;
+
+                    if (books.length > 0) {
+                        resultsContainer.style.display = "block";
+                        books.forEach(book => {
+                            const resultItem = document.createElement("div");
+                            resultItem.textContent = book.title;
+
+                            resultItem.addEventListener("click", function () {
+                                document.getElementById("media-name").value = book.title;
+                                resultsContainer.style.display = "none"; // Hide results after selection
+                            });
+
+                            resultsContainer.appendChild(resultItem);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching Open Library data:", error);
+                });
         }
     </script>
 
 </body>
-</html>
