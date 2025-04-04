@@ -108,7 +108,6 @@
 
         // Display stored reviews
         document.addEventListener("DOMContentLoaded", function () {
-            // Retrieve reviews from localStorage
             const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
             const reviewsTableBody = document.getElementById("reviews-table-body");
 

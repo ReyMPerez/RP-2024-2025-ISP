@@ -80,7 +80,6 @@
     </form>
 
     <script>
-        
         const TMDB_API_KEY = "1e294b7212ca318a2fc2acabc0303a23";
         const OPEN_LIBRARY_API_URL = "https://openlibrary.org/search.json";
 
@@ -178,7 +177,6 @@
             const reviewText = document.getElementById("review").value.trim();
             const spoilers = document.getElementById("spoilers").checked;
 
-            // Find the rating
             let rating = 0;
             for (let i = 1; i <= 5; i++) {
                 let star = document.getElementById(`star${i}`);
@@ -201,13 +199,11 @@
             alert("Review submitted!");
             form.reset();
             
-            // Reset stars
             for (let i = 1; i <= 5; i++) {
                 document.getElementById(`star${i}`).classList.replace("checked", "unchecked");
             }
         });
 
-        // Handle star ratings
         function setRating(rating) {
             for (let i = 1; i <= 5; i++) {
                 let star = document.getElementById(`star${i}`);
@@ -219,7 +215,6 @@
             }
         }
 
-        // Attach event listeners to stars
         for (let i = 1; i <= 5; i++) {
             const star = document.getElementById(`star${i}`);
             if (star) {
