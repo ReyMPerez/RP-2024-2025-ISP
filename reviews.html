@@ -80,20 +80,7 @@
     </form>
 
     <script>
-        let selectedRating = 0;
-
-        function setRating(rating) {
-            selectedRating = rating;
-            for (let i = 1; i <= 5; i++) {
-                let star = document.getElementById(`star${i}`);
-                if (i <= rating) {
-                    star.classList.replace("unchecked", "checked");
-                } else {
-                    star.classList.replace("checked", "unchecked");
-                }
-            }
-        }
-
+        
         const TMDB_API_KEY = "1e294b7212ca318a2fc2acabc0303a23";
         const OPEN_LIBRARY_API_URL = "https://openlibrary.org/search.json";
 
@@ -175,6 +162,75 @@
                     console.error("Error fetching Open Library data:", error);
                 });
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form"); // Ensure this exists
+        if (!form) {
+            console.error("Form not found! Make sure your HTML contains a <form> element.");
+            return;
+        }
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent page reload
+            
+            const title = document.getElementById("media-name").value.trim();
+            const date = document.getElementById("date").value;
+            const reviewText = document.getElementById("review").value.trim();
+            const spoilers = document.getElementById("spoilers").checked;
+
+            // Find the rating
+            let rating = 0;
+            for (let i = 1; i <= 5; i++) {
+                let star = document.getElementById(`star${i}`);
+                if (star.classList.contains("checked")) {
+                    rating = i;
+                }
+            }
+
+            if (!title || !date || !reviewText) {
+                alert("Please fill out all fields before submitting.");
+                return;
+            }
+
+            // Store review in localStorage
+            const newReview = { title, date, content: reviewText, spoilers, rating };
+            let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+            reviews.push(newReview);
+            localStorage.setItem("reviews", JSON.stringify(reviews));
+
+            alert("Review submitted!");
+            form.reset();
+            
+            // Reset stars
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`star${i}`).classList.replace("checked", "unchecked");
+            }
+        });
+
+        // Handle star ratings
+        function setRating(rating) {
+            for (let i = 1; i <= 5; i++) {
+                let star = document.getElementById(`star${i}`);
+                if (i <= rating) {
+                    star.classList.replace("unchecked", "checked");
+                } else {
+                    star.classList.replace("checked", "unchecked");
+                }
+            }
+        }
+
+        // Attach event listeners to stars
+        for (let i = 1; i <= 5; i++) {
+            const star = document.getElementById(`star${i}`);
+            if (star) {
+                star.addEventListener("click", function () {
+                    setRating(i);
+                });
+            } else {
+                console.error(`Star element #star${i} not found.`);
+            }
+        }
+        });
     </script>
 
 </body>

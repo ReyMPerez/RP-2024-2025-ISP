@@ -65,9 +65,22 @@
         </div>
     </div>
 
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Title</th>
+                <th>Review Text</th>
+                <th>Spoilers</th>
+            </tr>
+        </thead>
+        <tbody id="reviews-table-body"></tbody>
+    </table>
+
     <script src="app.js"></script>
 
     <script>
+        // Switch between books and movies
         let films = document.getElementById("filmSection");
         let filmsButton = document.getElementById("filmsButton");
         let filmsSearch = document.getElementById("filmsSearch");
@@ -92,6 +105,45 @@
                 booksSearch.style.display = "none";
             }
         }
+
+        // Display stored reviews
+        document.addEventListener("DOMContentLoaded", function () {
+            // Retrieve reviews from localStorage
+            const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+            const reviewsTableBody = document.getElementById("reviews-table-body");
+
+            reviews.forEach((review) => {
+                const row = document.createElement("tr");
+
+                const dateCell = document.createElement("td");
+                dateCell.textContent = review.date;
+                row.appendChild(dateCell);
+
+                const titleCell = document.createElement("td");
+                titleCell.textContent = review.title;
+                row.appendChild(titleCell);
+
+                const reviewCell = document.createElement("td");
+                reviewCell.textContent = review.content;
+                row.appendChild(reviewCell);
+
+                const spoilersCell = document.createElement("td");
+                spoilersCell.textContent = review.spoilers ? "YES" : "NO";
+                if (review.spoilers) spoilersCell.classList.add("spoilers");
+                row.appendChild(spoilersCell);
+
+                reviewsTableBody.appendChild(row);
+            });
+
+            if (reviews.length === 0) {
+                const emptyRow = document.createElement("tr");
+                const emptyCell = document.createElement("td");
+                emptyCell.colSpan = 4;
+                emptyCell.textContent = "No reviews submitted yet.";
+                emptyRow.appendChild(emptyCell);
+                reviewsTableBody.appendChild(emptyRow);
+            }
+        });
     </script>
 
 </body>
